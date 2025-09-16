@@ -1,0 +1,73 @@
+#+title: Keyb
+
+* Kinesis Adv360 Pro
+ZMK Configuration File
+
+fork https://github.com/KinesisCorporation/Adv360-Pro-ZMK
+Go modify the `config/adv360.keymap` and save the file.
+
+** Local Builds
+This section corresponds to 3 scripts:
+- install
+  run once
+- prepare
+  run before re-compiling
+- build
+  re-compile keyboard layout firmware
+
+*** Install Pre-reqs
+
+#+begin_src shell :tangle install.sh
+brew install docker colima lima-additional-guestagents qemu
+#+end_src
+
+`lima-additional-guestagents` is x86 support.
+
+*** Prepare
+From Apple's ARM silicon: specify x86 target.
+
+#+begin_src shell :tangle prepare.sh
+colima start --arch x86_64
+#+end_src
+
+If something goes wrong, try:
+```
+colima stop
+colima stop -f
+colima delete
+```
+*** Build
+After `colima` is happy -- Just `make` it!
+
+#+begin_src shell :tangle build.sh
+make
+#+end_src
+
+Takes a while the first time...
+and also takes a while for every run... if you're using `colima`.
+Tried to speed up by giving colima more resources:
+```shell
+colima status
+colima stop
+colima start --cpu 4 --memory 6 --arch x86_84 # cpu, memory persist between starts. arch persists until delete
+colima status
+```
+...didn't seem to speed things up. Still re-building from scratch every time.
+...Nevermind! Doesn't seem to be pulling all of the git repos anymore.
+Still takes ~5min tho.
+** Flashing Firmware
+First attempt didn't seem to work. Put in bootloader mode via `Mod`+`Macro1`.
+Maybe try the hard switch? (it shouldn't matter)
+This time it worked.
+Follow instructions from: https://kinesis-ergo.com/wp-content/uploads/Advantage360-Professional-Firmware-Update-Instructions-9.5.24-KB360-PRO.pdf
+
+1. Connect left via USB. Then disconnect and power down the right.
+2. Use paperclip to DOUBLE-CLICK the Bootloader Button. The
+3. Copy and paste the left firmware file to the “ADV360PRO” drive. The keyboard will flash blue
+while installing the file and then disconnect the drive automatically.
+5. Turn the left module battery on and disconnect it from the PC. Work quickly and do not allow
+the left module to fall asleep while you are updating the right side (you can tap the Fn key on
+the left module to reset the 30 second sleep timer).
+6. Now connect right side via USB and repeat steps 3 and 4.
+7. Once the right side stops flashing blue, hold the Mod key down and confirm both Layer LEDs
+light up green to confirm the keyboard is working properly.

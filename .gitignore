@@ -1,1 +1,10 @@
+# original from fork
 /firmware/*.uf2
+
+# I would ignore this... but...
+# it's already committed in fork...
+# could ignore and `rm`, but makes more work when pulling latest
+#/config/version.dtsi
+
+# mac
+.DS_Store
