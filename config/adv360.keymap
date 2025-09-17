@@ -34,11 +34,11 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp GRAVE  &kp N1       &kp N2      &kp N3       &kp N4       &kp N5  &tog 1                                                    &mo 3    &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp PLUS
-&kp TAB    &kp Q        &kp W       &kp F        &kp P        &kp B   &none                                                     &none    &kp J   &kp L   &kp U      &kp Y     &kp SQT   &kp MINUS
-&kp ESC    &hm A LMETA  &hm R LALT  &hm S LCTRL  &hm T LSHFT  &kp G   &none    &kp LALT     &kp HOME      &kp PG_UP  &kp RCTRL  &none    &kp M   &kp N   &kp E      &kp I     &kp O     &kp SEMI
-&kp LSHFT  &kp Z        &kp X       &kp C        &kp D        &kp V                         &kp END       &kp PG_DN                      &kp K   &kp H   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp BSLH     &kp CAPS    &kp LEFT     &kp RIGHT            &kp ESC  &lt 1 SPACE  &kp TAB       &kp BSPC   &kp ENTER  &kp DEL          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+&kp GRAVE  &kp N1       &kp N2      &kp N3       &kp N4       &kp N5  &tog 1                                                     &mo 3    &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp PLUS
+&kp TAB    &kp Q        &kp W       &kp F        &kp P        &kp B   &none                                                      &none    &kp J   &kp L   &kp U      &kp Y     &kp SQT   &kp MINUS
+&kp ESC    &hm A LMETA  &hm R LALT  &hm S LCTRL  &hm T LSHFT  &kp G   &none    &kp LALT     &kp HOME       &kp PG_UP  &kp RCTRL  &none    &kp M   &kp N   &kp E      &kp I     &kp O     &kp SEMI
+&kp LSHFT  &kp Z        &kp X       &kp C        &kp D        &kp V                         &kp END        &kp PG_DN                      &kp K   &kp H   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2      &kp BSLH     &kp CAPS    &kp LEFT     &kp RIGHT            &kp ESC  &lt 1 SPACE  &lt 1 TAB      &kp BSPC   &kp ENTER  &kp DEL          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
