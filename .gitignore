@@ -3,7 +3,7 @@
 
 # I would ignore this... but...
 # it's already committed in fork...
-# could ignore and `rm`, but makes more work when pulling latest
+# could ignore and `rm`, but makes more work when pulling latest from upstream fork
 #/config/version.dtsi
 
 # mac

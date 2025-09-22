@@ -55,6 +55,7 @@ colima status
 ...didn't seem to speed things up. Still re-building from scratch every time.
 ...Nevermind! Doesn't seem to be pulling all of the git repos anymore.
 Still takes ~5min tho.
+
 ** Flashing Firmware
 First attempt didn't seem to work. Put in bootloader mode via `Mod`+`Macro1`.
 Maybe try the hard switch? (it shouldn't matter)
@@ -71,3 +72,6 @@ the left module to reset the 30 second sleep timer).
 6. Now connect right side via USB and repeat steps 3 and 4.
 7. Once the right side stops flashing blue, hold the Mod key down and confirm both Layer LEDs
 light up green to confirm the keyboard is working properly.
+
+** Mac OS System Setting Configuration
+Mac does some annoying things around key repeats.

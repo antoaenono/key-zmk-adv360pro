@@ -8,28 +8,36 @@
 / {
     behaviors {
         #include "macros.dtsi"
-    #include "version.dtsi"
+        #include "version.dtsi"
 
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
-
-            //label = "HOMEROW_MODS"; // warning says label is marked as deprecated
-
-            #binding-cells = <2>;
+            //label = "HOMEROW_MODS"; // warning says label marked as deprecated
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick_tap_ms = <175>;
-            flavor = "tap-preferred";
+            #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
+        };
+        slt: spacebar_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            //label = "SPACE_LAYER_TAP";
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            //quick-tap-ms = <175>;
+            //global-quick-tap;
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        /* key position indices
-     *  1         2          3          4           5           6       7                                                                8    9       10     11        12       13      14
-     *
-     */
+        /*  key position indices
+         *  1         2          3          4           5           6       7                                                                8    9       10     11        12       13      14
+         *  see assets/key-positions.png
+         */
 
         default_layer {
             display-name = "Base";
@@ -37,8 +45,8 @@
 &kp GRAVE  &kp N1       &kp N2      &kp N3       &kp N4       &kp N5  &tog 1                                                     &mo 3    &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp PLUS
 &kp TAB    &kp Q        &kp W       &kp F        &kp P        &kp B   &none                                                      &none    &kp J   &kp L   &kp U      &kp Y     &kp SQT   &kp MINUS
 &kp ESC    &hm A LMETA  &hm R LALT  &hm S LCTRL  &hm T LSHFT  &kp G   &none    &kp LALT     &kp HOME       &kp PG_UP  &kp RCTRL  &none    &kp M   &kp N   &kp E      &kp I     &kp O     &kp SEMI
-&kp LSHFT  &kp Z        &kp X       &kp C        &kp D        &kp V                         &kp END        &kp PG_DN                      &kp K   &kp H   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp BSLH     &kp CAPS    &kp LEFT     &kp RIGHT            &kp ESC  &lt 1 SPACE  &lt 1 TAB      &kp BSPC   &kp ENTER  &kp DEL          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+&kp LSHFT  &kp Z        &kp X       &lt 1 C      &slt 1 D     &slt 1 V                      &kp END        &kp PG_DN                      &kp K   &kp H   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2      &kp BSLH     &kp CAPS    &kp LEFT     &kp RIGHT            &kp ESC  &slt 1 SPACE &lt 1 TAB      &kp BSPC   &slt 2 ENTER  &kp DEL          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
