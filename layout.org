@@ -7,6 +7,10 @@ fork https://github.com/KinesisCorporation/Adv360-Pro-ZMK
 Go modify the `config/adv360.keymap` and save the file.
 
 ** Local Builds
+Kinesis' ZMK fork recommends building via Docker.
+This is acceptable, but slow. Maybe someday I'll setup the environment locally...
+For now it's a good reason to do push ups and walk away. Just don't scroll.
+
 This section corresponds to 3 scripts:
 - install
   run once
@@ -58,9 +62,8 @@ Still takes ~5min tho.
 
 ** Flashing Firmware
 First attempt didn't seem to work. Put in bootloader mode via `Mod`+`Macro1`.
-Maybe try the hard switch? (it shouldn't matter)
-This time it worked.
-Follow instructions from: https://kinesis-ergo.com/wp-content/uploads/Advantage360-Professional-Firmware-Update-Instructions-9.5.24-KB360-PRO.pdf
+
+Below are paraphrased instructions from: https://kinesis-ergo.com/wp-content/uploads/Advantage360-Professional-Firmware-Update-Instructions-9.5.24-KB360-PRO.pdf
 
 1. Connect left via USB. Then disconnect and power down the right.
 2. Use paperclip to DOUBLE-CLICK the Bootloader Button. The
@@ -73,5 +76,50 @@ the left module to reset the 30 second sleep timer).
 7. Once the right side stops flashing blue, hold the Mod key down and confirm both Layer LEDs
 light up green to confirm the keyboard is working properly.
 
+*** Troubleshooting
+If you run into a state where things are half working...
+For your sanity:
+1. flash the reset file
+2. the default firmware
+3. your custom firmware
+
 ** Mac OS System Setting Configuration
 Mac does some annoying things around key repeats.
+
+*** Key Repeat
+#+begin_src shell
+antoaenono@antoaenono key-zmk-adv360pro % defaults find keyr
+Found 3 keys in domain 'com.apple.Accessibility': {
+    KeyRepeatDelay = "1.566666666";
+    KeyRepeatEnabled = 0;
+    KeyRepeatInterval = 0;
+}
+Found 3 keys in domain 'Apple Global Domain': {
+    InitialKeyRepeat = 0;
+    "InitialKeyRepeat_Level_Saved" = 0;
+    KeyRepeat = 0;
+}
+#+end_src
+
+*** Press and Hold
+#+begin_src shell
+antoaenono@antoaenono key-zmk-adv360pro % defaults find andhold
+Found 1 keys in domain 'com.apple.speech.recognition.AppleSpeechRecognition.CustomCommands': {
+    "System.PressAndHoldAtItem" =     {
+        NashvilleOnlyDisable = 1;
+    };
+}
+Found 1 keys in domain 'org.gnu.Emacs': {
+    ApplePressAndHoldEnabled = NO;
+}
+Found 1 keys in domain 'Apple Global Domain': {
+    ApplePressAndHoldEnabled = 0;
+}
+#+end_src
+In the code above, the most important is the last one.
+When true, holding down a character brings up the accent menu.
+
+I thought these were getting in the way of `layer-taps` in ZMK, but that turned out to be some kind of firmware corruption issue.
+
+Either way, now none of my keys repeat. This ain't a bad thing.
+It encourages me to use the right command, instead of pressing a key many times in a row.
