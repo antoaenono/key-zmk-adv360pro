@@ -1,0 +1,299 @@
+#+TITLE: ADV360 Pro ZMK Keymap - Dynamic Configuration
+#+PROPERTY: header-args :results silent :exports code
+#+PROPERTY: header-args:elisp :results value :exports results
+
+* Overview
+This is a fully dynamic literate configuration for the ADV360 Pro keyboard using ZMK firmware.
+To add a layer, simply create a table with the proper attributes. Everything else is automatic.
+
+* Fixed Configuration
+** Imports
+#+NAME: imports
+#+BEGIN_SRC c :eval no
+// This file is tangled. Don't edit directly!
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/stp.h>
+#include <dt-bindings/zmk/backlight.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
+#+END_SRC
+
+** Static Aliases
+#+NAME: static-aliases
+#+BEGIN_SRC c :eval no
+/// Modifiers
+#define HYPER LS(LC(LA(LGUI)))
+#define MEH LS(LC(LALT))
+#define CAG LC(LA(LGUI))
+
+/// Home-row Modifiers
+#define HRML(k1,k2,k3,k4) &hm LMETA k1 &hm LALT k2 &hm LCTRL k3 &hm LSHFT k4
+#define HRMR(k1,k2,k3,k4) &hm RSHFT k1 &hm RCTRL k2 &hm RALT k3 &hm RMETA k4
+
+/// Custom Behaviors
+#define CTL_ESC &mt LCTRL ESC
+#define GUI_TAB &mt LGUI TAB
+
+/// Bluetooth
+#define BT0 BT_SEL 0
+#define BT1 BT_SEL 1
+#define BT2 BT_SEL 2
+#define BT3 BT_SEL 3
+#define BT4 BT_SEL 4
+#define BTCLR BT_CLR
+#+END_SRC
+
+** Behaviors
+#+NAME: behaviors
+#+BEGIN_SRC c :eval no
+// Behaviors
+/ {
+    behaviors {
+        #include "macros.dtsi"
+        #include "version.dtsi"
+
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick_tap_ms = <175>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+        slt: spacebar_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+        };
+    };
+#+END_SRC
+
+* Layer Tables
+*** Assumptions
+Each table must have these properties:
+- NAME starting with "layer-" (the part after becomes the keymap node name)
+- ATTR_LAYER with :index (number which corresponds to LED color) and :display
+
+*** Layer to Color Map
+The RGB underglow colors correspond to layer indices as follows:
+
+| Index | Color  |
+|-------+--------|
+|     0 | Off    |
+|     1 | White  |
+|     2 | Blue   |
+|     3 | Green  |
+|     4 | Red    |
+|     5 | Purple |
+|     6 | Cyan   |
+|     7 | Yellow |
+
+This mapping is used by ZMK's RGB underglow feature to indicate which layer is active.
+
+
+*** Layer Definitions
+
+#+NAME: layer-base
+#+ATTR_LAYER: :index 0 :display "Base"
+| &kp GRAVE | &kp N1      | &kp N2     | &kp N3      | &kp N4      | &kp N5 | &tog SOUND |         |                |          |           |           |         | &mo MOD | &kp N6 | &kp N7      | &kp N8      | &kp N9     | &kp N0      | &kp PLUS  |
+| &kp TAB   | &kp Q       | &kp W      | &kp F       | &kp P       | &kp B  | &none    |         |                |          |           |           |         | &none   | &kp J  | &kp L       | &kp U       | &kp Y      | &kp SQT     | &kp MINUS |
+| &kp ESC   | &hm LMETA A | &hm LALT R | &hm LCTRL S | &hm LSHFT T | &kp G  | &none    |         | &kp LALT       | &kp HOME | &kp PG_UP | &kp RCTRL |         | &none   | &kp M  | &hm RSHFT N | &hm RCTRL E | &hm RALT I | &hm RMETA O | &kp SEMI  |
+| &kp LSHFT | &kp Z       | &kp X      | &kp C       | &kp D       | &kp V  |          |         |                | &kp END  | &kp PG_DN |           |         |         | &kp K  | &kp H       | &kp COMMA   | &kp DOT    | &kp FSLH    | &kp RSHFT |
+| &mo FUN   | &kp BSLH    | &kp CAPS   | &kp LEFT    | &kp RIGHT   |        |          | &kp ESC | &slt NAV SPACE | &kp TAB  | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &kp UP      | &kp DOWN    | &kp LBKT   | &kp RBKT    | &mo FUN   |
+
+#+NAME: layer-nav
+#+ATTR_LAYER: :index 1 :display "Navigation"
+| &none   | &none     | &none    | &none     | &none     | &none | &trans |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none | &none  |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
+| &none   | &kp LMETA | &kp LALT | &kp LCTRL | &kp LSHFT | &none | &none  |       | &none  | &trans | &trans | &none |       | &none | &kp LEFT | &kp DOWN | &kp UP | &kp RIGHT | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none |        |       |        | &trans | &trans |       |       |       | &none    | &none    | &none  | &none     | &none | &none |
+| &mo FUN | &none     | &none    | &none     | &none     |       |        | &none | &trans | &none  | &none  | &none | &none |       |          | &none    | &none  | &none     | &none | &none |
+
+#+NAME: layer-fun
+#+ATTR_LAYER: :index 2 :display "Function"
+| &kp F1 | &kp F2 | &kp F3 | &kp F4 | &kp F5 | &kp F6 | &tog SOUND |        |        |        |        |        |        | &mo MOD | &kp F7 | &kp F8 | &kp F9 | &kp F10 | &kp F11 | &kp F12 |
+| &trans | &trans | &trans | &trans | &trans | &trans | &none      |        |        |        |        |        |        | &none   | &trans | &trans | &trans | &trans  | &trans  | &trans  |
+| &trans | &trans | &trans | &trans | &trans | &trans | &none      |        | &trans | &trans | &trans | &trans |        | &none   | &trans | &trans | &trans | &trans  | &trans  | &trans  |
+| &trans | &trans | &trans | &trans | &trans | &trans |            |        |        | &trans | &trans |        |        |         | &trans | &trans | &trans | &trans  | &trans  | &trans  |
+| &trans | &trans | &trans | &trans | &trans |        |            | &trans | &trans | &trans | &trans | &trans | &trans |         |        | &trans | &trans | &trans  | &trans  | &trans  |
+
+#+NAME: layer-mod
+#+ATTR_LAYER: :index 3 :display "System"
+| &none          | &bt BT0 | &bt BT1 | &bt BT2 | &bt BT3    | &bt BT4 | &none       |       |       |       |           |            |                 | &trans       | &none | &none      | &none      | &none | &none | &none |
+| &none          | &none   | &none   | &none   | &none      | &none   | &bootloader |       |       |       |           |            |                 | &bootloader  | &none | &none      | &none      | &none | &none | &none |
+| &studio_unlock | &none   | &none   | &none   | &none      | &none   | &none       |       | &none | &none | &bt BTCLR | &none      |                 | &stp STP_BAT | &none | &none      | &none      | &none | &none | &none |
+| &none          | &none   | &none   | &none   | &macro_ver | &none   |             |       |       | &none | &none     |            |                 |              | &none | &none      | &none      | &none | &none | &none |
+| &none          | &none   | &none   | &none   | &none      |         |             | &none | &none | &none | &none     | &bl BL_TOG | &rgb_ug RGB_TOG |              |       | &bl BL_INC | &bl BL_DEC | &none | &none | &none |
+
+#+NAME: layer-sound
+#+ATTR_LAYER: :index 4 :display "Sound"
+| &trans    | &kp F1       | &kp F2       | &kp F3        | &kp F4       | &kp F5 | &trans |        |        |        |        |        |        | &trans | &kp F6   | &kp F7        | &kp F8        | &kp F9       | &kp F10      | &trans      |
+| &trans    | &trans       | &kp C_PREV   | &kp C_PP      | &kp C_NEXT   | &trans | &trans |        |        |        |        |        |        | &trans | &trans   | &kp C_BRI_DN  | &kp C_BRI_UP  | &trans       | &trans       | &trans      |
+| &trans    | &kp C_VOL_DN | &kp C_VOL_UP | &kp C_MUTE    | &trans       | &trans | &trans |        | &trans | &trans | &trans | &trans |        | &trans | &trans   | &trans        | &trans        | &trans       | &trans       | &trans      |
+| &trans    | &trans       | &trans       | &trans        | &trans       | &trans |        |        |        | &trans | &trans |        |        |        | &trans   | &trans        | &trans        | &trans       | &trans       | &trans      |
+| &trans    | &trans       | &trans       | &trans        | &trans       |        |        | &trans | &trans | &trans | &trans | &trans | &trans |        |          | &trans        | &trans        | &trans       | &trans       | &trans      |
+
+* Dynamic Processing
+** Overview
+This section implements a declarative table-driven keymap generator using Elisp's functional primitives.
+The approach treats org-mode tables as data structures that are discovered, transformed, and composed
+into a ZMK-compatible devicetree fragment through a series of pure transformations and controlled I/O.
+
+Key design principles:
+- *Separation of concerns*: Discovery, transformation, and rendering are isolated functions
+- *Data as configuration*: Tables are first-class data, not code
+- *Composability*: Each function does one thing and chains naturally
+- *Laziness simulation*: Tables are only parsed when needed via dynamic binding
+
+#+NAME: process-all
+#+BEGIN_SRC elisp :exports none :results output
+;; Core discovery function - implements a fold over buffer positions
+;; Returns: ((name index display) ...) sorted by index
+(defun discover-layer-tables ()
+  "Find all tables with layer- prefix and extract their metadata.
+  Implements a regex-based scan with accumulator pattern - essentially
+  a fold over matching positions in the buffer. The resulting association
+  list is sorted to ensure deterministic layer ordering (critical for ZMK)."
+  (let ((tables '()))
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward "^#\\+NAME: layer-\\(.+\\)$" nil t)
+        (let* ((name (match-string 1))
+               (attr-line (save-excursion
+                           (forward-line 1)
+                           (when (looking-at "^#\\+ATTR_LAYER:")
+                             (buffer-substring-no-properties
+                              (line-beginning-position)
+                              (line-end-position))))))
+          (when attr-line
+            (let* ((index (when (string-match ":index \\([0-9]+\\)" attr-line)
+                           (string-to-number (match-string 1 attr-line))))
+                   (display (when (string-match ":display \"\\([^\"]+\\)\"" attr-line)
+                             (match-string 1 attr-line))))
+              (push (list name index display) tables))))))
+    ;; Sort by index to ensure correct layer ordering in keymap
+    (sort tables (lambda (a b) (< (nth 1 a) (nth 1 b))))))
+
+;; Table parser - transforms org syntax to nested list structure
+;; Side effect: buffer navigation (contained via save-excursion)
+(defun get-table-data (table-name)
+  "Parse org table into list of lists representation.
+  Uses save-excursion to create a local navigation context (similar to a Reader monad).
+  Returns nil on failure (Maybe-like semantics without explicit type)."
+  (save-excursion
+    (goto-char (point-min))
+    (when (re-search-forward (format "^#\\+NAME: layer-%s$" table-name) nil t)
+      (forward-line 2) ; Skip ATTR_LAYER line and get to table
+      (let ((rows '()))
+        (while (looking-at "^|")
+          (let ((line (buffer-substring-no-properties
+                      (line-beginning-position)
+                      (line-end-position))))
+            (push (split-string line "|" t " ") rows))
+          (forward-line 1))
+        (nreverse rows)))))
+
+;; Pure transformation: [[String]] -> String
+(defun process-table-to-bindings (table-data)
+  "Convert table data to space-separated ZMK bindings.
+  Implements a double map: outer map over rows (with indentation injection),
+  inner map over cells (with empty filtering). Uses mapconcat as a
+  specialized fold that intersperses delimiters."
+  (mapconcat
+   (lambda (row)
+     (concat "                "
+             (mapconcat
+              (lambda (cell)
+                (if (or (not cell) (string-empty-p cell))
+                    ""
+                  cell))
+              row
+              " ")))
+   table-data
+   "\n"))
+
+;; Main execution - impure section with controlled side effects via princ
+;; Generates C preprocessor definitions from discovered metadata
+(let ((layers (discover-layer-tables))) ; Bind once, use everywhere (referential transparency)
+  (princ "// Layer aliases (auto-generated)\n")
+  ;; dolist is used for side effects (printing), not transformation
+  ;; Each layer tuple is destructured implicitly via nth (positional pattern matching)
+  (dolist (layer layers)
+    (princ (format "#define %s %d\n"
+                   (upcase (nth 0 layer))  ; String transformation
+                   (nth 1 layer))))        ; Index extraction
+  (princ "\n"))
+#+END_SRC
+
+#+NAME: generate-keymap
+#+BEGIN_SRC elisp :exports none :results output
+;; Keymap generator - transforms discovered metadata into devicetree syntax
+;; This is essentially a template engine using format strings as the template language
+(let ((layers (discover-layer-tables))) ; Memoization through let-binding
+  (princ "    keymap {\n")
+  (princ "        compatible = \"zmk,keymap\";\n\n")
+
+  ;; Generate defined layers
+  ;; Main layer generation - maps each layer tuple to devicetree fragment
+  ;; Note the lazy evaluation: table-data is only parsed when needed
+  (dolist (layer layers)
+    (let* ((name (nth 0 layer))           ; Destructuring via positional access
+           (display (nth 2 layer))
+           (table-data (get-table-data name))) ; Deferred evaluation - call-by-need semantics
+      (princ (format "        %s {\n" name))
+      (princ (format "            display-name = \"%s\";\n" display))
+      (princ "            bindings = <\n")
+      (princ (process-table-to-bindings table-data))
+      (princ "\n            >;\n")
+      (princ "        };\n\n")))
+
+  (princ "    };\n")
+  (princ "};\n"))
+#+END_SRC
+
+* Generated Keymap File
+
+#+BEGIN_SRC c :tangle adv360.keymap :noweb yes :eval no
+<<imports>>
+
+<<static-aliases>>
+
+<<process-all()>>
+
+<<behaviors>>
+
+<<generate-keymap()>>
+#+END_SRC
+
+* Usage
+This section contains examples only - nothing here is tangled to the keymap file.
+
+** Adding a New Layer
+Just add a table with proper attributes:
+
+#+begin_example :tangle no
+#+NAME: example-media-layer # should be named starting with `prefix-`
+#+ATTR_LAYER: :index 4 :display "Media"
+| &trans | &kp C_BRI_DN | &kp C_BRI_UP | &trans | &trans | &trans |
+| &trans | &kp C_PREV | &kp C_PP | &kp C_NEXT | &trans | &trans |
+| &trans | &kp C_MUTE | &kp C_VOL_DN | &kp C_VOL_UP | &trans | &trans |
+...
+#+end_example
+
+The system automatically:
+1. Generates `#define EXAMPLE_MEDIA_LAYER 4` (or whatever uppercase of the name after `layer-`)
+2. Creates the layer node in the keymap with the same name (minus the `layer-` prefix)
+3. Sets the display name to "Media"
+
+No other changes needed - just execute and tangle!
+
+** Workflow
+1. Edit tables to modify layouts
+2. Add new tables for new layers
+3. Tangle to generate keymap: `C-c C-v t`
+
+The elisp blocks are automatically executed during tangling (that's what the `()` in `<<block-name()>>` does).

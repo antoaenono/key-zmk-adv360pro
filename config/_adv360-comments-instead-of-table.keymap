@@ -1,0 +1,115 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/stp.h>
+#include <dt-bindings/zmk/backlight.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
+
+// key position indices for setting valid hold triggers
+// see assets/key-positions.png
+
+/ {
+    behaviors {
+        #include "macros.dtsi"
+        #include "version.dtsi"
+
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            //label = "HOMEROW_MODS"; // warning says label marked as deprecated
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick_tap_ms = <175>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+        slt: spacebar_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            //label = "SPACE_LAYER_TAP";
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            //quick-tap-ms = <175>;
+            //global-quick-tap;
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            display-name = "base";
+            bindings = <
+//┌ ─────── ┬ ───────── ┬ ──────── ┬ ───────── ┬ ───────── ┬ ──── ┬ ──── ┐                                                            ┌ ──── ┬ ──── ┬ ───────── ┬ ───────── ┬ ──────── ┬ ───────── ┬ ────────┐
+   &kp GRAVE &kp N1      &kp N2     &kp N3      &kp N4      &kp N5 &tog 1                                                              &mo 3  &kp N6 &kp N7      &kp N8      &kp N9     &kp N0      &kp PLUS
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┼ ──── ┤                                                            ├ ──── ┼ ──── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &kp TAB   &kp Q       &kp W      &kp F       &kp P       &kp B  &none                                                               &none  &kp J  &kp L       &kp U       &kp Y      &kp SQT     &kp MINUS
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┼ ──── ┤        ┌ ───────── ┬ ─────── ┐┌ ─────── ┬ ─────── ┐        ├ ──── ┼ ──── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &kp ESC   &hm LMETA A &hm LALT R &hm LCTRL S &hm LSHFT T &kp G  &none           &kp LALT     &kp HOME  &kp PG_UP &kp RCTRL          &none  &kp M  &hm RSHFT N &hm RCTRL E &hm RALT I &hm RMETA O &kp SEMI
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┼ ──── ┘┌ ───── ┼ ───────── ┼ ─────── ┤├ ─────── ┼ ─────── ┼ ───── ┐└ ──── ┼ ──── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &kp LSHFT &kp Z       &kp X      &kp C       &kp D       &kp V                               &kp END   &kp PG_DN                           &kp K  &kp H       &kp COMMA   &kp DOT    &kp FSLH    &kp RSHFT
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┘       │       │           ┼ ─────── ┤├ ─────── ┼         │       │       └ ──── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &mo 2     &kp BSLH    &kp CAPS   &kp LEFT    &kp RIGHT                  &kp ESC &slt 1 SPACE &kp TAB   &kp BSPC  &kp ENTER &kp DEL                &kp UP      &kp DOWN    &kp LBKT    &kp RBKT   &mo 2
+//└ ─────── ┴ ───────── ┴ ──────── ┴ ───────── ┴ ───────── ┘              └ ───── ┴ ───────── ┴ ─────── ┘└ ─────── ┴ ─────── ┴ ───── ┘              └ ───────── ┴ ───────── ┴ ──────── ┴ ───────── ┴ ─────── ┘
+            >;
+        };
+
+        nav {
+            display-name = "nav";
+            bindings = <
+//┌ ─────── ┬ ───────── ┬ ──────── ┬ ───────── ┬ ───────── ┬ ──── ┬ ──── ┐                                                            ┌ ──── ┬ ────── ┬ ───────── ┬ ───────── ┬ ──────── ┬ ───────── ┬ ────────┐
+   &none     &none       &none      &none       &none       &none  &trans                                                              &none  &none    &none       &none       &none      &none       &none
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┼ ──── ┤                                                            ├ ──── ┼ ────── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &none     &none       &none      &none       &none       &none  &none                                                               &none  &none    &none       &none       &none      &none       &none
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┼ ──── ┤        ┌ ───────── ┬ ─────── ┐┌ ─────── ┬ ─────── ┐        ├ ──── ┼ ────── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &none     &kp LMETA   &kp LALT   &kp LCTRL   &kp LSHFT   &none  &none           &none       &trans     &trans    &none              &none  &kp LEFT &kp DOWN    &kp UP      &kp RIGHT  &none       &none
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┼ ──── ┘┌ ───── ┼ ───────── ┼ ─────── ┤├ ─────── ┼ ─────── ┼ ───── ┐└ ─────┼ ────── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &none     &none       &none      &none       &none       &none                              &trans     &trans                              &none    &none       &none       &none      &none       &none
+//├ ─────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ───────── ┼ ──── ┘       │       │           ┼ ─────── ┤├ ─────── ┼         │       │       └ ────── ┼ ───────── ┼ ───────── ┼ ──────── ┼ ───────── ┼ ────────┤
+   &mo 2     &none       &none      &none       &none                      &none   &trans      &none      &none     &none     &none                    &none       &none       &none      &none       &none
+//└ ─────── ┴ ───────── ┴ ──────── ┴ ───────── ┴ ───────── ┘              └ ───── ┴ ───────── ┴ ─────── ┘└ ─────── ┴ ─────── ┴ ───── ┘                └ ───────── ┴ ───────── ┴ ──────── ┴ ───────── ┴ ─────── ┘
+            >;
+        };
+
+        fun {
+            display-name = "fun";
+            bindings = <
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                                      &mo 3   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
+&trans  &trans  &trans  &trans  &trans  &trans  &none                                       &none   &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans   &trans   &trans
+            >;
+        };
+
+        mod {
+            display-name = "Mod";
+            bindings = <
+&none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans           &none  &none       &none       &none  &none  &none
+&none           &none         &none         &none         &none         &none         &bootloader                                            &bootloader      &none  &none       &none       &none  &none  &none
+&studio_unlock  &none         &none         &none         &none         &none         &none        &none  &none      &bt BT_CLR  &none       &stp STP_BAT     &none  &none       &none       &none  &none  &none
+&none           &none         &none         &none         &macro_ver    &none                             &none      &none                                    &none  &none       &none       &none  &none  &none
+&none           &none         &none         &none         &none                       &none        &none  &none      &none       &bl BL_TOG  &rgb_ug RGB_TOG         &bl BL_INC  &bl BL_DEC  &none  &none  &none
+            >;
+        };
+
+        extra1 {
+            display-name = "Red";
+            status = "reserved";
+        };
+
+        extra2 {
+            display-name = "Purple";
+            status = "reserved";
+        };
+
+        extra3 {
+            display-name = "Cyan";
+            status = "reserved";
+        };
+
+        extra4 {
+            display-name = "Yellow";
+            status = "reserved";
+        };
+    };
+};

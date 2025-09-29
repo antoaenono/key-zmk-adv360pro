@@ -86,6 +86,11 @@ For your sanity:
 ** Mac OS System Setting Configuration
 Mac does some annoying things around key repeats.
 
+I thought the se were getting in the way of `layer-taps` in ZMK, but that turned out to be some kind of firmware corruption issue.
+
+Either way, now none of my keys repeat. This ain't a bad thing.
+It encourages me to use the right command, instead of pressing a key many times in a row.
+
 *** Key Repeat
 #+begin_src shell
 antoaenono@antoaenono key-zmk-adv360pro % defaults find keyr
@@ -119,7 +124,7 @@ Found 1 keys in domain 'Apple Global Domain': {
 In the code above, the most important is the last one.
 When true, holding down a character brings up the accent menu.
 
-I thought these were getting in the way of `layer-taps` in ZMK, but that turned out to be some kind of firmware corruption issue.
-
-Either way, now none of my keys repeat. This ain't a bad thing.
-It encourages me to use the right command, instead of pressing a key many times in a row.
+#+begin_src shell
+echo "defaults: disable accent menu"
+defaults write -g ApplePressAndHoldEnabled -bool false
+#+end_src
