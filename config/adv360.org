@@ -100,30 +100,30 @@ This mapping is used by ZMK's RGB underglow feature to indicate which layer is a
 #+NAME: layer-base
 #+ATTR_LAYER: :index 0 :display "Base"
 | &kp GRAVE | &kp N1      | &kp N2     | &kp N3      | &kp N4      | &kp N5 | &tog SOUND |         |                |          |           |           |         | &mo MOD | &kp N6 | &kp N7      | &kp N8      | &kp N9     | &kp N0      | &kp PLUS  |
-| &kp TAB   | &kp Q       | &kp W      | &kp F       | &kp P       | &kp B  | &none    |         |                |          |           |           |         | &none   | &kp J  | &kp L       | &kp U       | &kp Y      | &kp SQT     | &kp MINUS |
-| &kp ESC   | &hm LMETA A | &hm LALT R | &hm LCTRL S | &hm LSHFT T | &kp G  | &none    |         | &kp LALT       | &kp HOME | &kp PG_UP | &kp RCTRL |         | &none   | &kp M  | &hm RSHFT N | &hm RCTRL E | &hm RALT I | &hm RMETA O | &kp SEMI  |
-| &kp LSHFT | &kp Z       | &kp X      | &kp C       | &kp D       | &kp V  |          |         |                | &kp END  | &kp PG_DN |           |         |         | &kp K  | &kp H       | &kp COMMA   | &kp DOT    | &kp FSLH    | &kp RSHFT |
-| &mo FUN   | &kp BSLH    | &kp CAPS   | &kp LEFT    | &kp RIGHT   |        |          | &kp ESC | &slt NAV SPACE | &kp TAB  | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &kp UP      | &kp DOWN    | &kp LBKT   | &kp RBKT    | &mo FUN   |
+| &kp TAB   | &kp Q       | &kp W      | &kp F       | &kp P       | &kp B  | &none      |         |                |          |           |           |         | &none   | &kp J  | &kp L       | &kp U       | &kp Y      | &kp SQT     | &kp MINUS |
+| &kp ESC   | &hm LMETA A | &hm LALT R | &hm LCTRL S | &hm LSHFT T | &kp G  | &none      |         | &kp LALT       | &kp HOME | &kp PG_UP | &kp RCTRL |         | &none   | &kp M  | &hm RSHFT N | &hm RCTRL E | &hm RALT I | &hm RMETA O | &kp SEMI  |
+| &kp LSHFT | &kp Z       | &kp X      | &kp C       | &kp D       | &kp V  |            |         |                | &kp END  | &kp PG_DN |           |         |         | &kp K  | &kp H       | &kp COMMA   | &kp DOT    | &kp FSLH    | &kp RSHFT |
+| &mo FUN   | &kp BSLH    | &kp MEH    | &kp LEFT    | &kp RIGHT   |        |            | &kp ESC | &slt NAV SPACE | &kp TAB  | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &kp UP      | &kp DOWN    | &kp LBKT   | &kp RBKT    | &mo FUN   |
 
 #+NAME: layer-nav
 #+ATTR_LAYER: :index 1 :display "Navigation"
-| &none   | &none     | &none    | &none     | &none     | &none | &trans |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
-| &none   | &none     | &none    | &none     | &none     | &none | &none  |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
-| &none   | &kp LMETA | &kp LALT | &kp LCTRL | &kp LSHFT | &none | &none  |       | &none  | &trans | &trans | &none |       | &none | &kp LEFT | &kp DOWN | &kp UP | &kp RIGHT | &none | &none |
-| &none   | &none     | &none    | &none     | &none     | &none |        |       |        | &trans | &trans |       |       |       | &none    | &none    | &none  | &none     | &none | &none |
-| &mo FUN | &none     | &none    | &none     | &none     |       |        | &none | &trans | &none  | &none  | &none | &none |       |          | &none    | &none  | &none     | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none | &none |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none | &none |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
+| &none   | &kp LMETA | &kp LALT | &kp LCTRL | &kp LSHFT | &none | &none |       | &none  | &trans | &trans | &none |       | &none | &kp LEFT | &kp DOWN | &kp UP | &kp RIGHT | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none |       |       |        | &trans | &trans |       |       |       | &none    | &none    | &none  | &none     | &none | &none |
+| &mo FUN | &none     | &none    | &none     | &none     |       |       | &none | &trans | &none  | &none  | &none | &none |       |          | &none    | &none  | &none     | &none | &none |
 
 #+NAME: layer-fun
 #+ATTR_LAYER: :index 2 :display "Function"
-| &kp F1 | &kp F2 | &kp F3 | &kp F4 | &kp F5 | &kp F6 | &tog SOUND |        |        |        |        |        |        | &mo MOD | &kp F7 | &kp F8 | &kp F9 | &kp F10 | &kp F11 | &kp F12 |
-| &trans | &trans | &trans | &trans | &trans | &trans | &none      |        |        |        |        |        |        | &none   | &trans | &trans | &trans | &trans  | &trans  | &trans  |
-| &trans | &trans | &trans | &trans | &trans | &trans | &none      |        | &trans | &trans | &trans | &trans |        | &none   | &trans | &trans | &trans | &trans  | &trans  | &trans  |
-| &trans | &trans | &trans | &trans | &trans | &trans |            |        |        | &trans | &trans |        |        |         | &trans | &trans | &trans | &trans  | &trans  | &trans  |
-| &trans | &trans | &trans | &trans | &trans |        |            | &trans | &trans | &trans | &trans | &trans | &trans |         |        | &trans | &trans | &trans  | &trans  | &trans  |
+| &kp F1 | &kp F2 | &kp F3 | &kp F4 | &kp F5 | &kp F6 | &none |        |        |        |        |        |        | &none | &kp F7 | &kp F8 | &kp F9 | &kp F10 | &kp F11 | &kp F12 |
+| &trans | &trans | &trans | &trans | &trans | &trans | &none |        |        |        |        |        |        | &none | &trans | &trans | &trans | &trans  | &trans  | &trans  |
+| &trans | &trans | &trans | &trans | &trans | &trans | &none |        | &trans | &trans | &trans | &trans |        | &none | &trans | &trans | &trans | &trans  | &trans  | &trans  |
+| &trans | &trans | &trans | &trans | &trans | &trans |       |        |        | &trans | &trans |        |        |       | &trans | &trans | &trans | &trans  | &trans  | &trans  |
+| &trans | &trans | &trans | &trans | &trans |        |       | &trans | &trans | &trans | &trans | &trans | &trans |       |        | &trans | &trans | &trans  | &trans  | &trans  |
 
 #+NAME: layer-mod
-#+ATTR_LAYER: :index 3 :display "System"
-| &none          | &bt BT0 | &bt BT1 | &bt BT2 | &bt BT3    | &bt BT4 | &none       |       |       |       |           |            |                 | &trans       | &none | &none      | &none      | &none | &none | &none |
+#+ATTR_LAYER: :index 3 :display "Mod"
+| &none          | &bt BT0 | &bt BT1 | &bt BT2 | &bt BT3    | &bt BT4 | &none       |       |       |       |           |            |                 | &mo MOD      | &none | &none      | &none      | &none | &none | &none |
 | &none          | &none   | &none   | &none   | &none      | &none   | &bootloader |       |       |       |           |            |                 | &bootloader  | &none | &none      | &none      | &none | &none | &none |
 | &studio_unlock | &none   | &none   | &none   | &none      | &none   | &none       |       | &none | &none | &bt BTCLR | &none      |                 | &stp STP_BAT | &none | &none      | &none      | &none | &none | &none |
 | &none          | &none   | &none   | &none   | &macro_ver | &none   |             |       |       | &none | &none     |            |                 |              | &none | &none      | &none      | &none | &none | &none |
@@ -131,11 +131,11 @@ This mapping is used by ZMK's RGB underglow feature to indicate which layer is a
 
 #+NAME: layer-sound
 #+ATTR_LAYER: :index 4 :display "Sound"
-| &trans    | &kp F1       | &kp F2       | &kp F3        | &kp F4       | &kp F5 | &trans |        |        |        |        |        |        | &trans | &kp F6   | &kp F7        | &kp F8        | &kp F9       | &kp F10      | &trans      |
-| &trans    | &trans       | &kp C_PREV   | &kp C_PP      | &kp C_NEXT   | &trans | &trans |        |        |        |        |        |        | &trans | &trans   | &kp C_BRI_DN  | &kp C_BRI_UP  | &trans       | &trans       | &trans      |
-| &trans    | &kp C_VOL_DN | &kp C_VOL_UP | &kp C_MUTE    | &trans       | &trans | &trans |        | &trans | &trans | &trans | &trans |        | &trans | &trans   | &trans        | &trans        | &trans       | &trans       | &trans      |
-| &trans    | &trans       | &trans       | &trans        | &trans       | &trans |        |        |        | &trans | &trans |        |        |        | &trans   | &trans        | &trans        | &trans       | &trans       | &trans      |
-| &trans    | &trans       | &trans       | &trans        | &trans       |        |        | &trans | &trans | &trans | &trans | &trans | &trans |        |          | &trans        | &trans        | &trans       | &trans       | &trans      |
+| &kp F1 | &kp F2       | &kp F3       | &kp F4     | &kp F5     | &kp F6 | &tog SOUND |        |        |        |        |        |        | &none  | &kp F7 | &kp F8       | &kp F9       | &kp F10 | &kp F11 | &kp F12 |
+| &trans | &trans       | &kp C_PREV   | &kp C_PP   | &kp C_NEXT | &trans | &trans     |        |        |        |        |        |        | &trans | &trans | &kp C_BRI_DN | &kp C_BRI_UP | &trans  | &trans  | &trans  |
+| &trans | &kp C_VOL_DN | &kp C_VOL_UP | &kp C_MUTE | &trans     | &trans | &trans     |        | &trans | &trans | &trans | &trans |        | &trans | &trans | &trans       | &trans       | &trans  | &trans  | &trans  |
+| &trans | &trans       | &trans       | &trans     | &trans     | &trans |            |        |        | &trans | &trans |        |        |        | &trans | &trans       | &trans       | &trans  | &trans  | &trans  |
+| &trans | &trans       | &trans       | &trans     | &trans     |        |            | &trans | &trans | &trans | &trans | &trans | &trans |        |        | &trans       | &trans       | &trans  | &trans  | &trans  |
 
 * Dynamic Processing
 ** Overview
@@ -249,7 +249,7 @@ Key design principles:
       (princ "            bindings = <\n")
       (princ (process-table-to-bindings table-data))
       (princ "\n            >;\n")
-      (princ "        };\n\n")))
+      (princ "        };\n")))
 
   (princ "    };\n")
   (princ "};\n"))
@@ -297,3 +297,223 @@ No other changes needed - just execute and tangle!
 3. Tangle to generate keymap: `C-c C-v t`
 
 The elisp blocks are automatically executed during tangling (that's what the `()` in `<<block-name()>>` does).
+
+** Git Diff Configuration for Keymap Tables
+*** Problem
+When editing keymap tables, git diff shows the entire table as changed due to Emacs reformatting,
+making it impossible to see what actually changed.
+
+*** Solution: Configure Git and Magit for Word-Level Diffs
+
+**** 1. Git Configuration (For Everyone)
+This helps anyone working with the repo, not just Emacs users.
+
+#+NAME: gitattributes
+#+BEGIN_SRC fundamental :tangle ../.gitattributes
+# Use word-level diff for keymap files
+*.keymap diff=keymap
+#+END_SRC
+
+#+NAME: git-config-setup
+#+BEGIN_SRC shell :tangle ../scripts/setup-git-diff.sh
+#!/bin/bash
+# Configure git to show word-level diffs for keymap files
+
+# Set up custom diff driver for .keymap files
+git config diff.keymap.wordRegex '&[a-zA-Z0-9_]+|[a-zA-Z0-9_]+|[^[:space:]]'
+
+# Create helpful aliases
+git config alias.kdiff "diff --word-diff=color --word-diff-regex='&[a-zA-Z0-9_]+|[a-zA-Z0-9_]+|[^[:space:]]'"
+
+echo "Git configured for better keymap diffs."
+echo "Usage:"
+echo "  git diff                 # Will now show word-level for .keymap files"
+echo "  git kdiff <file>         # Force word-level diff for any file"
+#+END_SRC
+
+After tangling, run this once to set up git:
+#+BEGIN_SRC shell :dir .. :results output
+bash scripts/setup-git-diff.sh
+#+END_SRC
+
+**** 2. Magit Configuration (For Emacs Users)
+Enhanced diff viewing within Magit (compatible with Doom Emacs).
+
+#+NAME: magit-keymap-config
+#+BEGIN_SRC emacs-lisp :tangle keymap-diff.el
+;;; Enhanced Magit diff for keymap files
+
+(require 'magit)
+
+;; Always show refined (word-level) hunks in diffs
+(setq magit-diff-refine-hunk 'all)
+
+;; Custom function to view keymap changes with maximum detail
+(defun adv360/magit-diff-keymap ()
+  "Show word-level diff for keymap file in magit.
+Works with both vanilla Emacs and Doom Emacs."
+  (interactive)
+  (let ((default-directory (magit-toplevel)))
+    ;; Use magit-diff-working-tree (works with Doom and newer magit)
+    (if (fboundp 'magit-diff-working-tree)
+        (magit-diff-working-tree nil
+          (list "--word-diff=color"
+                "--word-diff-regex=&[a-zA-Z0-9_]+|[a-zA-Z0-9_]+|[^[:space:]]"
+                "--" "config/adv360.keymap"))
+      ;; Fallback to basic magit-diff with ARGS
+      (magit-diff nil nil
+        (list "--word-diff=color"
+              "--word-diff-regex=&[a-zA-Z0-9_]+|[a-zA-Z0-9_]+|[^[:space:]]"
+              "--" "config/adv360.keymap")))))
+
+;; Bind to 'K' in magit-status for quick access
+(with-eval-after-load 'magit
+  (define-key magit-status-mode-map (kbd "K") 'adv360/magit-diff-keymap))
+
+;; Optional: Quick command to see what changed
+(defun adv360/what-changed-in-keymap ()
+  "Show a quick word-diff of keymap changes."
+  (interactive)
+  (let ((default-directory (magit-toplevel)))
+    (shell-command
+     "git diff --word-diff=plain --word-diff-regex='&[a-zA-Z0-9_]+|[a-zA-Z0-9_]+|[^[:space:]]' config/adv360.keymap"
+     "*Keymap Changes*")
+    (pop-to-buffer "*Keymap Changes*")
+    (diff-mode)))
+
+(global-set-key (kbd "C-c k d") 'adv360/what-changed-in-keymap)
+#+END_SRC
+
+**Auto-Loading:** The configuration loads automatically when you open files in this project!
+This is handled by `.dir-locals.el`.
+
+To load manually or reload (evaluate this block):
+#+BEGIN_SRC emacs-lisp :results output
+(progn
+  (load-file "keymap-diff.el")
+  (message "✓ Keymap diff functions loaded!\nUsage:\n  K in magit-status - Word-level diff\n  C-c k d - Quick diff\n  C-c k e - Visual ediff"))
+#+END_SRC
+
+**** 3. Ediff for Visual Side-by-Side Comparison
+Ediff is Emacs' built-in visual diff tool that shows two versions side-by-side with character-level highlighting.
+
+#+NAME: ediff-keymap-config
+#+BEGIN_SRC emacs-lisp :tangle keymap-diff.el
+;;; Ediff configuration for visual keymap comparison
+
+;; Quick ediff comparison with HEAD
+(defun adv360/ediff-keymap-with-head ()
+  "Compare current keymap with HEAD using ediff.
+  Shows two windows side-by-side with character-level diff highlighting.
+
+  Navigation keys in ediff control panel:
+  - n/p: next/previous difference
+  - a/b: copy version A or B to the other
+  - q: quit ediff"
+  (interactive)
+  (let ((file "config/adv360.keymap"))
+    (if (file-exists-p file)
+        (vc-ediff file)
+      (error "Keymap file not found: %s" file))))
+
+;; Enhanced ediff with word-mode toggle
+(defun adv360/ediff-keymap-word-mode ()
+  "Compare keymap with HEAD using word-wise ediff.
+  This shows differences at the word level rather than line level."
+  (interactive)
+  (let* ((file "config/adv360.keymap")
+         (buf-a (get-buffer-create "*keymap-HEAD*"))
+         (buf-b (find-file-noselect file)))
+    ;; Get HEAD version
+    (with-current-buffer buf-a
+      (erase-buffer)
+      (insert (shell-command-to-string
+               (format "git show HEAD:%s" file))))
+    ;; Start ediff in word mode
+    (let ((ediff-word-mode t))
+      (ediff-buffers buf-a buf-b))))
+
+;; Make ediff show character-level differences by default
+(setq-default ediff-forward-word-function 'forward-char)
+(setq-default ediff-highlight-all-diffs t)
+
+;; Add toggle function for active ediff sessions
+(defun adv360/ediff-toggle-word-mode ()
+  "Toggle between line and word diff in active ediff session."
+  (interactive)
+  (when (bound-and-true-p ediff-word-mode)
+    (setq ediff-word-mode (not ediff-word-mode))
+    (ediff-update-diffs)))
+
+;; Bind keys for easy access
+(global-set-key (kbd "C-c k e") 'adv360/ediff-keymap-with-head)
+(global-set-key (kbd "C-c k E") 'adv360/ediff-keymap-word-mode)
+
+;; Hook to add toggle key in ediff control panel
+(add-hook 'ediff-startup-hook
+          (lambda ()
+            (define-key ediff-mode-map (kbd ".")
+              'adv360/ediff-toggle-word-mode)))
+#+END_SRC
+
+Try ediff now (make a small change first, then evaluate):
+#+BEGIN_SRC emacs-lisp :results output
+;; Make a test change and try ediff
+(progn
+  ;; First ensure functions are loaded
+  (load-file "keymap-diff.el")
+  ;; Provide instructions
+  (message "Ediff functions loaded!
+Usage:
+  C-c k e - Visual side-by-side comparison with HEAD
+  C-c k E - Word-wise comparison
+  In ediff: n/p to navigate, q to quit"))
+#+END_SRC
+
+*** Quick Reference
+
+After tangling and loading the configuration:
+
+| Command                  | Key Binding | Description                                      |
+|--------------------------+-------------+--------------------------------------------------|
+| In Magit status          | K           | Show word-level diff of keymap                  |
+| Anywhere in Emacs        | C-c k d     | Quick word-diff in buffer                       |
+| Visual comparison        | C-c k e     | Side-by-side ediff with HEAD                    |
+| Word-wise ediff          | C-c k E     | Ediff with word-level granularity               |
+| In ediff control panel   | n/p         | Navigate next/previous difference               |
+| In ediff control panel   | a/b         | Copy change from buffer A or B                  |
+| In ediff control panel   | .           | Toggle between line/word mode                   |
+| In ediff control panel   | q           | Quit ediff                                       |
+| Command line             | git diff    | Automatically uses word-diff for .keymap files  |
+| Command line             | git kdiff   | Force word-diff on any file                     |
+
+*** Setup Notes
+
+The configuration auto-loads when you enter the project directory thanks to `.dir-locals.el`.
+No additional setup needed for Doom Emacs or vanilla Emacs!
+
+If Emacs asks about unsafe local variables when opening files:
+- Answer `!` to permanently allow them for this project
+- Or answer `y` to allow just this time
+
+*** Example: Testing the Configuration
+
+1. Make a small change to the keymap (change one key binding)
+2. Test each diff method:
+
+#+BEGIN_SRC emacs-lisp :results output
+(progn
+  ;; Simulate checking for changes
+  (if (zerop (shell-command
+              "git diff --quiet config/adv360.keymap"))
+      (message "No changes in keymap. Make a small edit first!")
+    (message "Changes detected! Try:
+  - M-x magit-status then press K
+  - C-c k d for quick diff
+  - C-c k e for visual ediff")))
+#+END_SRC
+
+The word-diff regex `&[a-zA-Z0-9_]+|[a-zA-Z0-9_]+|[^[:space:]]` is specifically designed for ZMK keymaps:
+- `&[a-zA-Z0-9_]+` matches ZMK behaviors like &kp, &mo, &hm
+- `[a-zA-Z0-9_]+` matches key names like ESC, TAB, LSHIFT
+- `[^[:space:]]` treats single characters as separate words

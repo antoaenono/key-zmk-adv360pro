@@ -1,0 +1,2 @@
+# Use word-level diff for keymap files
+*.keymap diff=keymap
