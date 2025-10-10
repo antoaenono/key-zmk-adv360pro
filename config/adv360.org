@@ -98,11 +98,11 @@ This mapping is used by ZMK's RGB underglow feature to indicate which layer is a
 
 #+NAME: layer-base
 #+ATTR_LAYER: :index 0 :display "Base"
-| &kp GRAVE | &kp N1      | &kp N2     | &kp N3      | &kp N4      | &kp N5 | &tog SOUND |         |                |          |           |           |         | &mo MOD | &kp N6 | &kp N7      | &kp N8      | &kp N9     | &kp N0      | &kp EQUAL |
-| &kp TAB   | &kp Q       | &kp W      | &kp F       | &kp P       | &kp B  | &none      |         |                |          |           |           |         | &none   | &kp J  | &kp L       | &kp U       | &kp Y      | &kp SQT     | &kp MINUS |
-| &kp ESC   | &hm LMETA A | &hm LALT R | &hm LCTRL S | &hm LSHFT T | &kp G  | &none      |         | &kp LALT       | &kp HOME | &kp PG_UP | &kp RCTRL |         | &none   | &kp M  | &hm RSHFT N | &hm RCTRL E | &hm RALT I | &hm RMETA O | &kp SEMI  |
-| &kp LSHFT | &kp Z       | &kp X      | &kp C       | &kp D       | &kp V  |            |         |                | &kp END  | &kp PG_DN |           |         |         | &kp K  | &kp H       | &kp COMMA   | &kp DOT    | &kp FSLH    | &kp RSHFT |
-| &mo FUN   | &kp BSLH    | &kp MEH    | &kp LEFT    | &kp RIGHT   |        |            | &kp ESC | &slt NAV SPACE | &kp TAB  | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &kp UP      | &kp DOWN    | &kp LBKT   | &kp RBKT    | &mo FUN   |
+| &kp GRAVE | &kp N1      | &kp N2     | &kp N3      | &kp N4      | &kp N5 | &tog SOUND |         |                |          |           |           |         | &mo MOD | &kp N6 | &kp N7      | &kp N8      | &kp N9     | &kp N0         | &kp EQUAL |
+| &kp TAB   | &kp Q       | &kp W      | &kp E       | &kp R       | &kp T  | &none      |         |                |          |           |           |         | &none   | &kp Y  | &kp U       | &kp I       | &kp O      | &kp P          | &kp MINUS |
+| &kp ESC   | &hm LMETA A | &hm LALT S | &hm LCTRL D | &hm LSHFT F | &kp G  | &none      |         | &kp LMETA      | &kp HOME | &kp PG_UP | &kp RCTRL |         | &none   | &kp H  | &hm RSHFT J | &hm RCTRL K | &hm RALT L | &hm RMETA SEMI | &kp SQT   |
+| &kp LSHFT | &kp Z       | &kp X      | &kp C       | &kp V       | &kp B  |            |         |                | &kp END  | &kp PG_DN |           |         |         | &kp N  | &kp M       | &kp COMMA   | &kp DOT    | &kp FSLH       | &kp RSHFT |
+| &mo FUN   | &kp BSLH    | &kp MEH    | &none       | &none       |        |            | &kp ESC | &slt NAV SPACE | &kp TAB  | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &none       | &none       | &kp LBKT   | &kp RBKT       | &mo FUN   |
 
 #+NAME: layer-nav
 #+ATTR_LAYER: :index 1 :display "Navigation"
