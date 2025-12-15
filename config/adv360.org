@@ -3,8 +3,10 @@
 #+PROPERTY: header-args:elisp :results value :exports results
 
 * Overview
-This is a fully dynamic literate configuration for the ADV360 Pro keyboard using ZMK firmware.
-To add a layer, simply create a table with the proper attributes. Everything else is automatic.
+This is a dynamic-literate-configuration for the ADV360 Pro keyboard in ZMK.
+
+To add a new layer for the keyboard,
+create a[n Org] table with some attributes -- check [[*Assumptions]].
 
 * Fixed Configuration
 ** Imports
@@ -23,20 +25,24 @@ To add a layer, simply create a table with the proper attributes. Everything els
 ** Static Aliases
 #+NAME: static-aliases
 #+BEGIN_SRC c :eval no
-/// Modifiers
+
+// Modifiers
 #define HYPER LS(LC(LA(LGUI)))
 #define MEH LS(LC(LALT))
 #define CAG LC(LA(LGUI))
 
 /// Home-row Modifiers
-#define HRML(k1,k2,k3,k4) &hm LMETA k1 &hm LALT k2 &hm LCTRL k3 &hm LSHFT k4
-#define HRMR(k1,k2,k3,k4) &hm RSHFT k1 &hm RCTRL k2 &hm RALT k3 &hm RMETA k4
+#define HRL(k1,k2,k3,k4) &hm LMETA k1 &hm LALT k2 &hm LCTRL k3 &hm LSHFT k4
+#define HRR(k1,k2,k3,k4) &hm RSHFT k1 &hm RCTRL k2 &hm RALT k3 &hm RMETA k4
 
-/// Custom Behaviors
+// Behaviors
+// helps narrow keyb table
+#define LPAR_SH &mt LSHFT LPAR
+#define RPAR_SH &mt RSHFT RPAR
 #define CTL_ESC &mt LCTRL ESC
 #define GUI_TAB &mt LGUI TAB
 
-/// Bluetooth
+// Bluetooth profiles: make multiple BT pairings
 #define BT0 BT_SEL 0
 #define BT1 BT_SEL 1
 #define BT2 BT_SEL 2
@@ -98,19 +104,19 @@ This mapping is used by ZMK's RGB underglow feature to indicate which layer is a
 
 #+NAME: layer-base
 #+ATTR_LAYER: :index 0 :display "Base"
-| &kp GRAVE | &kp N1      | &kp N2     | &kp N3      | &kp N4      | &kp N5 | &tog SOUND |         |                |          |           |           |         | &mo MOD | &kp N6 | &kp N7      | &kp N8      | &kp N9     | &kp N0         | &kp EQUAL |
-| &kp TAB   | &kp Q       | &kp W      | &kp E       | &kp R       | &kp T  | &none      |         |                |          |           |           |         | &none   | &kp Y  | &kp U       | &kp I       | &kp O      | &kp P          | &kp MINUS |
-| &kp ESC   | &hm LMETA A | &hm LALT S | &hm LCTRL D | &hm LSHFT F | &kp G  | &none      |         | &kp LMETA      | &kp HOME | &kp PG_UP | &kp RCTRL |         | &none   | &kp H  | &hm RSHFT J | &hm RCTRL K | &hm RALT L | &hm RMETA SEMI | &kp SQT   |
-| &kp LSHFT | &kp Z       | &kp X      | &kp C       | &kp V       | &kp B  |            |         |                | &kp END  | &kp PG_DN |           |         |         | &kp N  | &kp M       | &kp COMMA   | &kp DOT    | &kp FSLH       | &kp RSHFT |
-| &mo FUN   | &kp BSLH    | &kp MEH    | &none       | &none       |        |            | &kp ESC | &slt NAV SPACE | &kp TAB  | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &none       | &none       | &kp LBKT   | &kp RBKT       | &mo FUN   |
+| &kp GRAVE | &kp N1      | &kp N2     | &kp N3      | &kp N4      | &kp N5 | &tog SOUND |         |                |              |           |           |         | &mo MOD | &kp N6 | &kp N7      | &kp N8      | &kp N9     | &kp N0         | &kp EQUAL |
+| &kp TAB   | &kp Q       | &kp W      | &kp E       | &kp R       | &kp T  | &kp EQUAL  |         |                |              |           |           |         | &none   | &kp Y  | &kp U       | &kp I       | &kp O      | &kp P          | &kp MINUS |
+| &kp ESC   | &hm LMETA A | &hm LALT S | &hm LCTRL D | &hm LSHFT F | &kp G  | &kp MINUS  |         | &kp LMETA      | &kp HOME     | &kp PG_UP | &kp RCTRL |         | &none   | &kp H  | &hm RSHFT J | &hm RCTRL K | &hm RALT L | &hm RMETA SEMI | &kp SQT   |
+| LPAR_SH   | &kp Z       | &kp X      | &kp C       | &kp V       | &kp B  |            |         |                | &kp END      | &kp PG_DN |           |         |         | &kp N  | &kp M       | &kp COMMA   | &kp DOT    | &kp FSLH       | RPAR_SH   |
+| &mo FUN   | &none       | &kp MEH    | &none       | &kp LBKT    |        |            | &kp ESC | &slt NAV SPACE | &slt FUN TAB | &kp BSPC  | &kp ENTER | &kp DEL |         |        | &none       | &kp LBKT    | &kp RBKT   | &kp BSLH       | &mo FUN   |
 
 #+NAME: layer-nav
 #+ATTR_LAYER: :index 1 :display "Navigation"
-| &none   | &none     | &none    | &none     | &none     | &none | &none |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
-| &none   | &none     | &none    | &none     | &none     | &none | &none |       |        |        |        |       |       | &none | &none    | &none    | &none  | &none     | &none | &none |
-| &none   | &kp LMETA | &kp LALT | &kp LCTRL | &kp LSHFT | &none | &none |       | &none  | &trans | &trans | &none |       | &none | &kp LEFT | &kp DOWN | &kp UP | &kp RIGHT | &none | &none |
-| &none   | &none     | &none    | &none     | &none     | &none |       |       |        | &trans | &trans |       |       |       | &none    | &none    | &none  | &none     | &none | &none |
-| &mo FUN | &none     | &none    | &none     | &none     |       |       | &none | &trans | &none  | &none  | &none | &none |       |          | &none    | &none  | &none     | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none | &none |        |        |        |        |        |        | &none | &none    | &none    | &none  | &none     | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none | &none |        |        |        |        |        |        | &none | &none    | &none    | &none  | &none     | &none | &none |
+| &none   | &kp LMETA | &kp LALT | &kp LCTRL | &kp LSHFT | &none | &none |        | &trans | &trans | &trans | &trans |        | &none | &kp LEFT | &kp DOWN | &kp UP | &kp RIGHT | &none | &none |
+| &none   | &none     | &none    | &none     | &none     | &none |       |        |        | &trans | &trans |        |        |       | &none    | &none    | &none  | &none     | &none | &none |
+| &mo FUN | &none     | &none    | &none     | &none     |       |       | &trans | &trans | &trans | &trans | &trans | &trans |       |          | &none    | &none  | &none     | &none | &none |
 
 #+NAME: layer-fun
 #+ATTR_LAYER: :index 2 :display "Function"

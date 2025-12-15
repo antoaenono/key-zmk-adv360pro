@@ -7,20 +7,24 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/rgb.h>
 
-/// Modifiers
+
+// Modifiers
 #define HYPER LS(LC(LA(LGUI)))
 #define MEH LS(LC(LALT))
 #define CAG LC(LA(LGUI))
 
 /// Home-row Modifiers
-#define HRML(k1,k2,k3,k4) &hm LMETA k1 &hm LALT k2 &hm LCTRL k3 &hm LSHFT k4
-#define HRMR(k1,k2,k3,k4) &hm RSHFT k1 &hm RCTRL k2 &hm RALT k3 &hm RMETA k4
+#define HRL(k1,k2,k3,k4) &hm LMETA k1 &hm LALT k2 &hm LCTRL k3 &hm LSHFT k4
+#define HRR(k1,k2,k3,k4) &hm RSHFT k1 &hm RCTRL k2 &hm RALT k3 &hm RMETA k4
 
-/// Custom Behaviors
+// Behaviors
+// helps narrow keyb table
+#define LPAR_SH &mt LSHFT LPAR
+#define RPAR_SH &mt RSHFT RPAR
 #define CTL_ESC &mt LCTRL ESC
 #define GUI_TAB &mt LGUI TAB
 
-/// Bluetooth
+// Bluetooth profiles: make multiple BT pairings
 #define BT0 BT_SEL 0
 #define BT1 BT_SEL 1
 #define BT2 BT_SEL 2
@@ -66,21 +70,21 @@
         base {
             display-name = "Base";
             bindings = <
-                &kp GRAVE &kp N1      &kp N2     &kp N3      &kp N4      &kp N5 &tog SOUND                                                             &mo MOD &kp N6 &kp N7      &kp N8      &kp N9     &kp N0         &kp EQUAL
-                &kp TAB   &kp Q       &kp W      &kp E       &kp R       &kp T  &none                                                                  &none   &kp Y  &kp U       &kp I       &kp O      &kp P          &kp MINUS
-                &kp ESC   &hm LMETA A &hm LALT S &hm LCTRL D &hm LSHFT F &kp G  &none              &kp LMETA      &kp HOME &kp PG_UP &kp RCTRL         &none   &kp H  &hm RSHFT J &hm RCTRL K &hm RALT L &hm RMETA SEMI &kp SQT  
-                &kp LSHFT &kp Z       &kp X      &kp C       &kp V       &kp B                                    &kp END  &kp PG_DN                           &kp N  &kp M       &kp COMMA   &kp DOT    &kp FSLH       &kp RSHFT
-                &mo FUN   &kp BSLH    &kp MEH    &none       &none                         &kp ESC &slt NAV SPACE &kp TAB  &kp BSPC  &kp ENTER &kp DEL                &none       &none       &kp LBKT   &kp RBKT       &mo FUN  
+                &kp GRAVE &kp N1      &kp N2     &kp N3      &kp N4      &kp N5 &tog SOUND                                                                 &mo MOD &kp N6 &kp N7      &kp N8      &kp N9     &kp N0         &kp EQUAL
+                &kp TAB   &kp Q       &kp W      &kp E       &kp R       &kp T  &kp EQUAL                                                                  &none   &kp Y  &kp U       &kp I       &kp O      &kp P          &kp MINUS
+                &kp ESC   &hm LMETA A &hm LALT S &hm LCTRL D &hm LSHFT F &kp G  &kp MINUS          &kp LMETA      &kp HOME     &kp PG_UP &kp RCTRL         &none   &kp H  &hm RSHFT J &hm RCTRL K &hm RALT L &hm RMETA SEMI &kp SQT  
+                LPAR_SH   &kp Z       &kp X      &kp C       &kp V       &kp B                                    &kp END      &kp PG_DN                           &kp N  &kp M       &kp COMMA   &kp DOT    &kp FSLH       RPAR_SH  
+                &mo FUN   &none       &kp MEH    &none       &kp LBKT                      &kp ESC &slt NAV SPACE &slt FUN TAB &kp BSPC  &kp ENTER &kp DEL                &none       &kp LBKT    &kp RBKT   &kp BSLH       &mo FUN  
             >;
         };
         nav {
             display-name = "Navigation";
             bindings = <
-                &none   &none     &none    &none     &none     &none &none                                        &none &none    &none    &none  &none     &none &none
-                &none   &none     &none    &none     &none     &none &none                                        &none &none    &none    &none  &none     &none &none
-                &none   &kp LMETA &kp LALT &kp LCTRL &kp LSHFT &none &none       &none  &trans &trans &none       &none &kp LEFT &kp DOWN &kp UP &kp RIGHT &none &none
-                &none   &none     &none    &none     &none     &none                    &trans &trans                   &none    &none    &none  &none     &none &none
-                &mo FUN &none     &none    &none     &none                 &none &trans &none  &none  &none &none                &none    &none  &none     &none &none
+                &none   &none     &none    &none     &none     &none &none                                           &none &none    &none    &none  &none     &none &none
+                &none   &none     &none    &none     &none     &none &none                                           &none &none    &none    &none  &none     &none &none
+                &none   &kp LMETA &kp LALT &kp LCTRL &kp LSHFT &none &none        &trans &trans &trans &trans        &none &kp LEFT &kp DOWN &kp UP &kp RIGHT &none &none
+                &none   &none     &none    &none     &none     &none                     &trans &trans                     &none    &none    &none  &none     &none &none
+                &mo FUN &none     &none    &none     &none                 &trans &trans &trans &trans &trans &trans                &none    &none  &none     &none &none
             >;
         };
         fun {
